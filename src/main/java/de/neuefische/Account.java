@@ -1,17 +1,18 @@
 package de.neuefische;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 
 public class Account {
     private String accountNumber;
     private BigDecimal balance;
-    private Client owner;
+    private List<Client> owners;
 
-    public Account(String accountNumber, BigDecimal balance, Client owner) {
+    public Account(String accountNumber, BigDecimal balance, List<Client> owners) {
         this.accountNumber = accountNumber;
         this.balance = balance;
-        this.owner = owner;
+        this.owners = owners;
     }
 
     public void deposit(BigDecimal amount) {
@@ -40,12 +41,12 @@ public class Account {
         this.balance = balance;
     }
 
-    public Client getOwner() {
-        return owner;
+    public List<Client> getOwners() {
+        return owners;
     }
 
-    public void setOwner(Client owner) {
-        this.owner = owner;
+    public void setOwners(List<Client> owners) {
+        this.owners = owners;
     }
 
     @Override
@@ -53,12 +54,12 @@ public class Account {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Account account = (Account) o;
-        return Objects.equals(accountNumber, account.accountNumber) && Objects.equals(balance, account.balance) && Objects.equals(owner, account.owner);
+        return Objects.equals(accountNumber, account.accountNumber) && Objects.equals(balance, account.balance) && Objects.equals(owners, account.owners);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(accountNumber, balance, owner);
+        return Objects.hash(accountNumber, balance, owners);
     }
 
     @Override
@@ -66,7 +67,7 @@ public class Account {
         return "Account{" +
                 "accountNumber='" + accountNumber + '\'' +
                 ", balance=" + balance +
-                ", owner=" + owner +
+                ", owners=" + owners +
                 '}';
     }
 }
