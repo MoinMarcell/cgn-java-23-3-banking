@@ -34,6 +34,13 @@ public class BankService {
         return newAccountNumbers;
     }
 
+    public void addInterest(BigDecimal interestRate) {
+        for (Account account : accounts) {
+            BigDecimal interest = account.getBalance().multiply(interestRate.divide(BigDecimal.valueOf(100), RoundingMode.HALF_UP));
+            account.deposit(interest);
+        }
+    }
+
     public void transfer(String fromAccountNumber, String toAccountNumber, BigDecimal amount) {
         Account fromAccount = getAccount(fromAccountNumber);
         Account toAccount = getAccount(toAccountNumber);
